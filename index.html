@@ -11,8 +11,11 @@
 </head>
 
 <body>
-  <div class="container">
-    
+  <marquee class="marq" direction="left" loop="">
+          <h1 style=" color:rgb(114, 32, 124)">Sorting Algorithms Visualizer</h1>
+        </marquee>
+
+  <!-- <div class="container"> -->
     <div class="visual-div">
       <div class="stage" id="stage"></div>
     </div>
@@ -21,18 +24,17 @@
         <option value="bubbleSort" selected>Bubble Sort</option>
         <option value="selectionSort">Selection Sort</option>
         <option value="insertionSort">Insertion Sort</option>
-        <!-- <option value="mergeSort">Merge Sort</option> -->
         <option value="quickSort">Quick Sort</option>
       </select>
       <div class="generate-new">
         <p>Size of New Array</p>
-        <input type="number" name="sizeArray" id="numbersBars" max="20" min="1" value="10">
+        <input type="number" name="sizeArray" id="numbersBars" max="25" min="1" value="15">
         <button id="generateBtn">New</button>
       </div>
-      <div class="buttons">
+      
         <button id="solveBtn">Solve</button>
-      </div>
+     
     </div>
-  </div>
+  <!-- </div> -->
 </body>
 </html>

@@ -1,7 +1,7 @@
 import { sleep } from "./helpers/util.js";
 import { SortingAlgorithms } from "./helpers/sortingAlgorithms.js";
 
-let nBars = 10
+let nBars = 15
 
 let numbersBars = document.getElementById('numbersBars')
 
@@ -31,14 +31,27 @@ const start = () => {
   barsDivs = []
 
   for (let i = 0; i < bars.length; i++) {
-    const bar = document.createElement('div')
-    bar.style.width = `${bars[i].width}px`
-    bar.style.height = `${bars[i].height}px`
-    bar.style.left = `${5 + i * 30}px`
-    bars[i] = { ...bars[i], position: i }
-    bar.classList.add('bar')
-    barsDivs.push(bar)
-    stage.appendChild(bar)
+    const bar = document.createElement('div');
+    bar.style.width = `${bars[i].width}px`;
+    bar.style.height = `${bars[i].height}px`;
+    bar.style.left = `${5 + i * 30}px`;
+    bar.classList.add('bar');
+
+    // Create a label to show the height value
+    const label = document.createElement('span');
+    label.innerText = bars[i].height;
+    label.style.position = 'absolute';
+    label.style.bottom = '100%'; // Position above the bar
+    label.style.left = '50%';
+    label.style.transform = 'translateX(-50%)';
+    label.style.color = 'black';
+    label.style.fontSize = '12px';
+
+    bar.appendChild(label); // Add the label inside the bar
+
+    bars[i] = { ...bars[i], position: i };
+    barsDivs.push(bar);
+    stage.appendChild(bar);
   }
 }
 
@@ -52,7 +65,7 @@ async function swapBars(barsDivs, i, j) {
   barsDivs[j].classList.add('activate');
 
   // Wait for animation to complete
-  await sleep(300);
+  await sleep(1000);
 
   // Remove highlight effect
   barsDivs[i].classList.remove('activate');
@@ -91,8 +104,14 @@ const solve = async () => {
 
 generateBtn.addEventListener('click', () => {
   nBars = parseInt(numbersBars.value, 10)
-  stage.style.width = `${nBars * 30}px`
-  start()
+  if(nBars > 25 || nBars <1 || isNaN(nBars))
+  {
+    alert("Array size must be between 1 and 25")
+  }
+  else{
+    stage.style.width = `${nBars * 30}px`
+    start()
+}
 })
 
 solveBtn.addEventListener('click', () => {
